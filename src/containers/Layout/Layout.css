@@ -1,0 +1,15 @@
+.dataDashboardTabs {
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.dataDashboardTabs > span {
+  display: inline-block;
+  border-bottom: 3px solid #ccc;
+  transition: all .25s ease;
+  cursor: pointer;
+}
+
+.dataDashboardTabs > span.active {
+  border-bottom: 3px solid #08530c;
+}

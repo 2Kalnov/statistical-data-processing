@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+.flexbox {
+  display: flex;
+}
+
+.submitButton {
+  margin: auto;
+  display: block;
+  background: #195d19;
+	color: inherit;
+  border: none;
+  border-radius: 8px;
+	padding: 8px 40px;
+	font: inherit;
+	cursor: pointer;
+  outline: inherit;
+  color: white;
+  font-size: 0.95em;
+  transition: background .25s ease;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.submitButton:hover {
+  background: #257525;
+}
