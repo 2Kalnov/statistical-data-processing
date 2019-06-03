@@ -24,7 +24,7 @@ function calculateSelectionVariance(valuesAndFrequencies: Map<number, number>, d
 }
 
 function calculateSelectionAverageVariance(selectionVariance: number): number {
-  return math.sqrt(selectionVariance);
+  return math.sqrt(selectionVariance) ;
 }
 
 function calculateSelectionRefinedVariance(selectionVariance: number, dataSize: number): number {
