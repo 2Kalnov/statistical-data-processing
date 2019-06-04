@@ -3,7 +3,7 @@ import math from 'mathjs';
 function arraySum(arr, until) {
   let sum = math.bignumber(0);
   for (let i = 0; i < until && i < arr.length; ++i) {
-    sum = math.add(sum, math.bignumber(arr[i]));
+    sum = math.add(math.bignumber(sum), math.bignumber(arr[i]));
   }
   return math.number(sum);
 }
@@ -59,7 +59,7 @@ function getFormulas(probs, values, elemId) {
     string += getSpecificFormula(probs, values, i) + "<br>";
   }
 
-  document.getElementById(elemId).innerHTML += string;
+  document.getElementById(elemId).innerHTML = string;
 }
 
 export { getFormulas as GetDistributionFormula };

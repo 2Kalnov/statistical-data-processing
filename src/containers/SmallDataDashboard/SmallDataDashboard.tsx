@@ -93,7 +93,7 @@ class SmallDataDashboard extends Component<{}, DashboardState> {
 					valuesNumber={this.state.valuesNumber}
 					cellsOptions={{disabled: true}}
 					mappedValueName="n"
-					valueName={`x${<sub>i</sub>}`}
+					valueName={<span>x<sub>i</sub></span>}
 					xListHandler={function() {}}
 					nListHandler={function() {}}
 				/>  

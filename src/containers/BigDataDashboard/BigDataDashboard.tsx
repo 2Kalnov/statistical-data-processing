@@ -60,6 +60,39 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
     };
   }
 
+  clearState = () => {
+    this.setState({
+      dataIsLoaded: false,
+      intervalsNumber: 0,
+      intervals: [],
+      intervalsFrequencies: [],
+      values: [],
+      valuesFrequencies: [],
+      valuesRelativeFrequencies: [],
+      statisticalData: [],
+      valuesNumber: 0,
+      characteristics: {
+        average: 0, 
+        averageVariance: 0,
+        refinedVariance: 0,
+        variance: 0
+      },
+      showResults: false,
+      inputType: undefined,
+      inputIntervals: []
+    });
+  }
+
+  flatIntervals = (intervals: Array<Interval>): Array<number> => {
+    let flattenIntervals: Array<number> = [];
+    intervals.forEach((interval: Interval) => {
+      flattenIntervals.push(interval[0]);
+      flattenIntervals.push(interval[1]);
+    });
+
+    return flattenIntervals;
+  }
+
   setStatisticalData = (data: string) => {
 		const statisticalData = ParseStatisticalData(data);
 		const valuesAndFrequencies: Map<number, number> = CalculateUniqueValuesFrequencies(statisticalData, SortData(statisticalData));
@@ -82,6 +115,7 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
 
 		this.setState(
 			{ 
+        showResults: false,
         dataIsLoaded: true,
 				statisticalData: statisticalData, 
 				values: values, 
@@ -128,8 +162,7 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
   }
 
   calculate = () => {
-    const statisticalDataLength = this.state.intervalsFrequencies.reduce((freqSum: number, freq: number) => freqSum + freq, 0);
-    this.setState({showResults: true, statisticalData: Array(statisticalDataLength)});
+    this.setState({showResults: true});
   }
   
   componentDidUpdate() {
@@ -141,6 +174,7 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
   }
 
   handleInputTypeChange = (inputType: DataInputType) => {
+    this.clearState();
     this.setState({inputType: inputType});
   }
 
@@ -181,7 +215,9 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
     {
       let currentFrequencies = this.state.intervalsFrequencies;
       currentFrequencies[frequencyIndex] = frequency;
-      this.setState({intervalsFrequencies: currentFrequencies});
+
+      const statisticalDataLength = this.state.intervalsFrequencies.reduce((freqSum: number, freq: number) => freqSum + freq, 0);
+      this.setState({intervalsFrequencies: currentFrequencies, statisticalData: Array(statisticalDataLength)});
     }
   }
 
@@ -208,7 +244,7 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
       case DataInputType.Manual:
         dataInput = 
           <React.Fragment>
-            <p>Формат ввода: {'(<левая граница>,<правая граница>]'}</p>
+            <p style={{color: 'red'}}>Формат ввода: {'(<левая граница>,<правая граница>]'}</p>
             <StatisticRangeTable 
               x={this.state.inputIntervals} 
               n={this.state.intervalsFrequencies} 
@@ -324,14 +360,14 @@ class BigDataDashboard extends Component<{}, BigDataDashboardState> {
           <React.Fragment>
             <h3>Эмпирическая функция распределения (по интервальному ряду): </h3>
             <EmpiricalDistributionFormula 
-              values={Array.from(new Set(this.state.intervals.flat()))}
+              values={Array.from(new Set(this.flatIntervals(this.state.intervals)))}
               probabilities={this.state.intervalsFrequencies.map((freq: number) => freq / this.state.statisticalData.length)}
               elementId="IntervalRangeDistributionFormula"
             />
 
             <h3>График эмпирической функции распределения (по интервальному ряду): </h3>
             <FunctionPlot
-              xList={Array.from(new Set(this.state.intervals.flat())).slice(0, -1)}
+              xList={Array.from(new Set(this.flatIntervals(this.state.intervals))).slice(0, -1)}
               pList={this.state.intervalsFrequencies.map((freq: number) => freq / this.state.statisticalData.length)}
               xUnit={RoundNumber(this.state.intervals[0][1] - this.state.intervals[0][0], 3)}
               elementId="IntervalRangeDistributionPlot"
