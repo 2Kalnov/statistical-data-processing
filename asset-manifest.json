@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/statistical-data-processing/static/css/main.159ef0c0.chunk.css",
-    "main.js": "/statistical-data-processing/static/js/main.51d747f6.chunk.js",
-    "main.js.map": "/statistical-data-processing/static/js/main.51d747f6.chunk.js.map",
+    "main.js": "/statistical-data-processing/static/js/main.ecd8041a.chunk.js",
+    "main.js.map": "/statistical-data-processing/static/js/main.ecd8041a.chunk.js.map",
     "runtime~main.js": "/statistical-data-processing/static/js/runtime~main.a4eb6f3c.js",
     "runtime~main.js.map": "/statistical-data-processing/static/js/runtime~main.a4eb6f3c.js.map",
     "static/js/2.f6bcb4ac.chunk.js": "/statistical-data-processing/static/js/2.f6bcb4ac.chunk.js",
     "static/js/2.f6bcb4ac.chunk.js.map": "/statistical-data-processing/static/js/2.f6bcb4ac.chunk.js.map",
     "index.html": "/statistical-data-processing/index.html",
-    "precache-manifest.d8a5e3767ba8ba6e9f882555bde4aada.js": "/statistical-data-processing/precache-manifest.d8a5e3767ba8ba6e9f882555bde4aada.js",
+    "precache-manifest.fefcb5f3db58c435b65274606d76b317.js": "/statistical-data-processing/precache-manifest.fefcb5f3db58c435b65274606d76b317.js",
     "service-worker.js": "/statistical-data-processing/service-worker.js",
     "static/css/main.159ef0c0.chunk.css.map": "/statistical-data-processing/static/css/main.159ef0c0.chunk.css.map"
   }
